@@ -1,0 +1,441 @@
+  /* ================= WAVE 2: more beasts ================= */
+  M({ id:'ape', n:'Ape', hd:'1d6', ac:12, mv:11, atk:[['Claws',0]], dmg:'1d6',
+    xp:2, tr:'-',
+    desc:'It has watched the campfire for two nights and decided you are food. It comes down the tree with a branch it has already chosen.' });
+  M({ id:'gorilla', n:'Gorilla', hd:'3d6', ac:12, mv:10, atk:[['Claws',2]], dmg:'2d6',
+    xp:20, tr:'-',
+    desc:'One chest-beat is the only warning. The branch is splitting where it lands, and it is coming down with both arms full.' });
+  M({ id:'chimpanzee', n:'Chimpanzee', hd:'1d4', ac:12, mv:12, atk:[['Claws',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'Small, quick, and far too clever for its size. It has your torch and it is enjoying the lesson it is about to teach you.' });
+  M({ id:'baboon', n:'Baboon', hd:'1d6', ac:12, mv:12, atk:[['Jaws',0]], dmg:'1d6',
+    xp:2, tr:'-',
+    desc:'It barks, it throws stones, and it is never alone. The whole troop is watching, and they all want a share of whatever you drop.' });
+  M({ id:'jackal', n:'Jackal', hd:'1d4', ac:12, mv:13, atk:[['Bite',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'It keeps its distance and waits for the hunters to tire. It is patient the way scavengers are patient, and it will not leave until the field is clean.' });
+  M({ id:'camel', n:'Camel', hd:'2d6', ac:13, mv:10, atk:[['Hooves',1]], dmg:'1d8',
+    xp:5, tr:'-',
+    desc:'It carries the water, the salt, and a grudge. It will spit, it will kick, and it will remember the hand that struck it for years.' });
+  M({ id:'warhorse', n:'Warhorse', hd:'2d6', ac:13, mv:14, atk:[['Hooves',1]], dmg:'1d8',
+    xp:5, tr:'-',
+    desc:'Bred for the charge and shod for the charge. It knows the smell of the field, and it is brave the way a thing is brave when it has been taught to be.' });
+  M({ id:'mule', n:'Mule', hd:'2d6', ac:13, mv:10, atk:[['Hooves',1]], dmg:'1d8',
+    xp:5, tr:'-',
+    desc:'It will carry the load every mile and then stop at the stream. It is small, stubborn, and absolutely correct about every decision it makes.' });
+  M({ id:'donkey', n:'Donkey', hd:'1d6', ac:13, mv:10, atk:[['Hooves',0]], dmg:'1d6',
+    xp:2, tr:'-',
+    desc:'It brays at the dark, and it is not wrong. Once it has decided where it is standing, moving it is a negotiation it always wins.' });
+  M({ id:'elephant', n:'Elephant', hd:'8d6', ac:14, mv:8, atk:[['Trunk',5]], dmg:'4d6',
+    xp:300, tr:'d', size:'l',
+    desc:'It does not see you as a threat. It sees you as a small thing in the way, and it is already turning, and the ground is already shaking.' });
+  M({ id:'hippopotamus', n:'Hippopotamus', hd:'8d6', ac:14, mv:9, swim:true, atk:[['Jaws',5]], dmg:'4d6',
+    xp:300, tr:'d', size:'l',
+    desc:'Asleep in the water, the size of a rowboat, its ears already turning toward you. The water is already moving, and it is about to open its mouth.' });
+  M({ id:'rhinoceros', n:'Rhinoceros', hd:'7d6', ac:14, mv:12, atk:[['Horn',5]], dmg:'3d6',
+    xp:250, tr:'d', size:'l',
+    desc:'It does not stop and it does not see. It simply comes, and by the time the warning reaches you the horn is already where the horse used to be.' });
+  M({ id:'bison', n:'Bison', hd:'6d6', ac:13, mv:12, atk:[['Horns',4]], dmg:'2d8',
+    xp:150, tr:'-', size:'l',
+    desc:'It moves through the grass like a weather event, and the herd behind it is the same. The ground is giving under all of them, and the field is going empty.' });
+  M({ id:'moose', n:'Moose', hd:'5d6', ac:13, mv:12, atk:[['Antlers',4]], dmg:'2d8',
+    xp:90, tr:'-', size:'l',
+    desc:'It stands in the shallows with the antlers spread. It is not aggressive; it is simply there, and it is very, very large, and it is watching the boat.' });
+  M({ id:'elk', n:'Elk', hd:'3d6', ac:13, mv:14, atk:[['Horns',2]], dmg:'1d8',
+    xp:40, tr:'-',
+    desc:'It runs with the herd and it does not stop for the fence, the road, or you. By the time you are on your feet it is already a shape at the tree line.' });
+  M({ id:'deer', n:'Deer', hd:'1d6', ac:13, mv:14, atk:[['Horns',0]], dmg:'1d4',
+    xp:2, tr:'-',
+    desc:'It stands in the clearing and decides. Its legs are already coiled, and you are already too slow, and the clearing is already empty.' });
+  M({ id:'rabbit', n:'Rabbit', hd:'1d4', ac:13, mv:13, atk:[['Teeth',-2]], dmg:'1',
+    xp:1, tr:'-', size:'s',
+    desc:'It does not fight. It runs. It is already gone, the hole in the fence is already closing, and it is laughing about it in the way rabbits laugh.' });
+  M({ id:'squirrel', n:'Squirrel', hd:'1d4', ac:13, mv:13, atk:[['Teeth',-2]], dmg:'1',
+    xp:1, tr:'-', size:'s',
+    desc:'It buried the acorn and forgot where, and it is furious about it, and it is furious at you for looking. It will bite your finger to prove a point.' });
+  M({ id:'giant squirrel', n:'Giant Squirrel', hd:'1d6', ac:13, mv:14, atk:[['Teeth',0]], dmg:'1d6',
+    xp:3, tr:'-',
+    desc:'The size of a cat and very, very angry. It has guarded the same tree for a season, and the tree is bare, and it blames you for everything.' });
+  M({ id:'raccoon', n:'Raccoon', hd:'1d4', ac:12, mv:11, atk:[['Claws',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'It has opened the bin and the pot and it is already in your sleeve. It is not coming out, it has the ring, and it considers the room its own.' });
+  M({ id:'otter', n:'Otter', hd:'1d4', ac:13, mv:12, swim:true, atk:[['Claws',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'It plays in the shallows, steals the fish, and is already holding the hook. It laughs the way a thing laughs when it has already won.' });
+  M({ id:'beaver', n:'Beaver', hd:'1d4', ac:13, mv:10, swim:true, atk:[['Teeth',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'It has dammed the stream and moved the house, and it is already chewing the post. The house is leaning, and it is not finished yet.' });
+  M({ id:'badger', n:'Badger', hd:'1d6', ac:13, mv:10, atk:[['Claws',0]], dmg:'1d6',
+    xp:2, tr:'-',
+    desc:'It does not like being moved or being looked at. It is already under the fence, the hole is already bigger, and it is ready to show you why.' });
+  M({ id:'giant weasel', n:'Giant Weasel', hd:'1d6', ac:13, mv:13, atk:[['Bite',1]], dmg:'1d6',
+    xp:3, tr:'-',
+    desc:'Quick, mean, and never alone. They come out of the burrow in a line, the line is at your boot, and your boot is already going.' });
+  M({ id:'giant mouse', n:'Giant Mouse', hd:'1d4', ac:13, mv:12, atk:[['Bite',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'It ate the letter and the seal, and it is already in your sleeve with the coin. It looks at you like it owns the room, and it may be right.' });
+  M({ id:'giant mole', n:'Giant Mole', hd:'2d6', ac:13, mv:10, atk:[['Claws',1]], dmg:'1d8',
+    xp:10, tr:'-',
+    desc:'It is under the floor, under the wall, and already through the foundation. The dust is falling, the house is leaning, and it is not done.' });
+  M({ id:'ferret', n:'Ferret', hd:'1d4', ac:13, mv:13, atk:[['Bite',-2]], dmg:'1',
+    xp:1, tr:'-', size:'s',
+    desc:'It is in the wall, in the pipe, and already behind the door. It has the buckle, it is not coming out, and it is laughing.' });
+  M({ id:'shrew', n:'Shrew', hd:'1d4', ac:13, mv:12, atk:[['Bite',-2]], dmg:'1',
+    xp:1, tr:'-', size:'s',
+    desc:'Very small, very hungry, and it eats more than it weighs. It is already under the door, and it is already chewing the strap.' });
+  M({ id:'lemur', n:'Lemur', hd:'1d4', ac:13, mv:12, atk:[['Claws',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'It watches from the branch with an eye that is not unkind. It has the pouch, it is moving to the next branch, and the pouch is already empty.' });
+  M({ id:'sloth', n:'Sloth', hd:'1d6', ac:12, mv:4, atk:[['Claws',0]], dmg:'1d4',
+    xp:2, tr:'-',
+    desc:'It is in the tree, holding the branch, thinking about the thing it was going to do. It will do it. Not today. The branch is splitting.' });
+  M({ id:'porcupine', n:'Porcupine', hd:'1d6', ac:14, mv:8, atk:[['Quills',0]], dmg:'1d4',
+    xp:2, tr:'-',
+    desc:'It does not run. It turns, the quills are where your hand was, your hand is going, and it is not finished and it is not going to be sorry.' });
+  M({ id:'giant echidna', n:'Giant Echidna', hd:'2d6', ac:14, mv:9, atk:[['Snout',1]], dmg:'1d8',
+    xp:10, tr:'-',
+    desc:'Covered in spines and very, very angry. The spines are where your boot was, your boot is going, and it is not finished.' });
+  M({ id:'platypus', n:'Platypus', hd:'1d4', ac:13, mv:10, swim:true, atk:[['Bill',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'In the water with the duckbill and the webbed foot and the poison spur. It is turning, the water is moving, and it is deciding what you are for.' });
+  M({ id:'kangaroo', n:'Kangaroo', hd:'2d6', ac:13, mv:14, atk:[['Kick',1]], dmg:'1d8',
+    xp:10, tr:'-',
+    desc:'It hops with a momentum that is not small. The kick is where your leg was, your leg is going, and it is not finished and it is not going to stop.' });
+  M({ id:'gibbon', n:'Gibbon', hd:'1d4', ac:13, mv:13, atk:[['Claws',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'It swings with a silence that is not natural. It is already above the branch, it is watching, it has the fruit, and it is not sharing.' });
+  M({ id:'orangutan', n:'Orangutan', hd:'2d6', ac:12, mv:10, atk:[['Claws',1]], dmg:'1d6',
+    xp:10, tr:'-',
+    desc:'It sits in the canopy and thinks. It has the vine, it is swinging, the branch is gone, and it is already above you.' });
+  M({ id:'capuchin', n:'Capuchin', hd:'1d4', ac:13, mv:12, atk:[['Claws',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'Very small, very quick, and it has the nutcracker. It is opening the shell, watching you, and deciding whether you are useful.' });
+  M({ id:'howler monkey', n:'Howler Monkey', hd:'1d6', ac:13, mv:12, atk:[['Claws',0]], dmg:'1d4',
+    xp:2, tr:'-',
+    desc:'It howls from the high branch and the sound goes through the chest. It is not aggressive; it is simply announcing, and the announcement is in the walls.' });
+  M({ id:'spider monkey', n:'Spider Monkey', hd:'1d4', ac:13, mv:13, atk:[['Claws',-1]], dmg:'1d4',
+    xp:1, tr:'-',
+    desc:'It hangs by the tail and watches with four eyes. It is moving, the branch is bare, it is gone, and it has the seed.' });
+
+  /* ================= WAVE 2: more humanoids ================= */
+  M({ id:'gnoll warhound', n:'Gnoll Warhound', hd:'2d6', ac:13, mv:14, atk:[['Bite',1]], dmg:'1d8',
+    xp:15, tr:'-',
+    desc:'Bred for the hunt, it runs in a pack and does not stop when the others fall. The howl is in the trees, and the trees are running.' });
+  M({ id:'sahuagin shaman', n:'Sahuagin Shaman', hd:'3d6', ac:14, mv:11, swim:true, atk:[['Spear',2]], dmg:'1d8',
+    sp:{ magic:true }, xp:40, tr:'d', align:'ce',
+    desc:'It wears the shark-tooth crown and sings to the deep. The deep is answering, the water is moving, and the boats are listing.' });
+  M({ id:'drow priestess', n:'Drow Priestess', hd:'3d6', ac:15, mv:10, atk:[['Sword',3]], dmg:'1d8',
+    sp:{ magic:true, darkvision:true }, xp:60, tr:'e', align:'le',
+    desc:'She carries the spider\u2019s icon and has read the book that was not meant to be read. The air around her is doing a thing, and the dark is listening.' });
+  M({ id:'drow assassin', n:'Drow Assassin', hd:'3d6', ac:15, mv:11, atk:[['Dagger',3]], dmg:'1d6',
+    sp:{ poison:{ lvl:4 } }, xp:60, tr:'e', align:'le',
+    desc:'She was in the room before the lamp was lit and she is in the wall now. The knife is already wet, and the name is already spoken.' });
+  M({ id:'half troll', n:'Half-Troll', hd:'4d6', ac:14, mv:11, atk:[['Clubs',3]], dmg:'2d6',
+    sp:{ regen:2 }, xp:90, tr:'d', align:'ce',
+    desc:'It has the troll\u2019s healing and the man\u2019s grudge. The healing is the worse of the two, and the club is coming, and the shoulder is going.' });
+  M({ id:'ogre shaman', n:'Ogre Shaman', hd:'4d6', ac:14, mv:10, atk:[['Club',3]], dmg:'2d6',
+    sp:{ magic:true }, xp:60, tr:'d', align:'ce',
+    desc:'It wears the bones of the things it has been and sings to the ones it is becoming. The wind is listening, the storm is turning, and the field is paying attention.' });
+  M({ id:'troll warlord', n:'Troll Warlord', hd:'6d6', ac:15, mv:11, atk:[['Claws',5]], dmg:'2d8',
+    sp:{ regen:5, fireWeak:true }, xp:200, tr:'e', align:'ce',
+    desc:'It carries the scar from the fire and remembers the fire. It wears the helm of the one it killed, the helm is too small, and the axe is coming.' });
+  M({ id:'bugbear chief', n:'Bugbear Chief', hd:'3d8', ac:14, mv:11, atk:[['Clubs',3]], dmg:'2d8',
+    sp:{ surprise:1 }, xp:40, tr:'d', align:'ce',
+    desc:'The biggest of the big ones, holding both clubs and laughing. The laugh is in the walls, and the door is going.' });
+  M({ id:'goblin shaman', n:'Goblin Shaman', hd:'1d6', ac:13, mv:10, atk:[['Spear',0]], dmg:'1d6',
+    sp:{ magic:true }, xp:5, tr:'d', align:'ce',
+    desc:'It wears the face of the thing it was and sings to the thing it is becoming. The song is in the walls, and the dark is answering.' });
+  M({ id:'kobold trapmaker', n:'Kobold Trapmaker', hd:'1d4', ac:12, mv:10, atk:[['Dart',-1]], dmg:'1d4',
+    xp:2, tr:'-', align:'ce',
+    desc:'It set the tripwire, oiled the pit, and slipped behind the wall. The wall is moving, the floor is going, and it is laughing.' });
+  M({ id:'orc chieftain', n:'Orc Chieftain', hd:'3d8', ac:15, mv:11, atk:[['Greataxe',3]], dmg:'2d10',
+    xp:60, tr:'e', align:'ce',
+    desc:'It wears the teeth of the ones it killed and holds the axe that took the last of them. The axe is coming, and the shield is going.' });
+  M({ id:'hobgoblin captain', n:'Hobgoblin Captain', hd:'2d8', ac:15, mv:11, atk:[['Sword',2]], dmg:'1d10',
+    xp:25, tr:'d', align:'le',
+    desc:'It keeps the lines and the promises, and it burns the village exactly as it said it would. The standard is turning, and the road is burning.' });
+  M({ id:'lizardman shaman', n:'Lizard Man Shaman', hd:'2d6', ac:14, mv:11, atk:[['Spear',1]], dmg:'1d6',
+    sp:{ magic:true }, xp:15, tr:'d', align:'ne',
+    desc:'It wears the river\u2019s scale and sings to the flood. The flood is answering, the water is rising, and the village is listening.' });
+  M({ id:'half giant bruiser', n:'Half-Giant Bruiser', hd:'5d8', ac:14, mv:10, atk:[['Club',4]], dmg:'2d8',
+    xp:90, tr:'d', align:'ce',
+    desc:'The giant\u2019s height and the man\u2019s club, wearing a helm that does not quite fit. The helm is too small, and the club is coming.' });
+  M({ id:'cyclops herder', n:'Cyclops Herder', hd:'6d8', ac:15, mv:10, atk:[['Staff',4]], dmg:'2d8',
+    xp:150, tr:'d', align:'ne',
+    desc:'It keeps the goats on the crag and throws rocks when they stray. The goats are not straying, the rock is coming, and the field is listening.' });
+  M({ id:'stone giant scout', n:'Stone Giant Scout', hd:'9d8', ac:16, mv:10, atk:[['Spear',5]], dmg:'3d6',
+    xp:300, tr:'e', align:'ne',
+    desc:'It walks the hillside with the patience of stone, looking for the road. The road is found, the spear is turning, and the field is listening.' });
+  M({ id:'cloud giant champion', n:'Cloud Giant Champion', hd:'13d8', ac:17, mv:9, atk:[['Greatclub',9]], dmg:'5d8',
+    sp:{ breath:{ kind:'any', dmg:'8d6', range:5, save:1 } }, xp:800, tr:'f', align:'ce',
+    desc:'It fights for the honour of the hill and throws lightning when the honour is touched. The lightning is coming, and the field is burning.' });
+  M({ id:'red giant', n:'Red Giant', hd:'12d8', ac:16, mv:9, atk:[['Greatclub',8]], dmg:'4d8',
+    sp:{ breath:{ kind:'fire', dmg:'7d6', range:5, save:1 } }, xp:700, tr:'f', align:'ce',
+    desc:'Red as iron, hot as the forge, holding the club that took the anvil. The club is coming, and the anvil is gone.' });
+  M({ id:'elder ettin', n:'Ettin (Elder)', hd:'8d8', ac:15, mv:10, atk:[['Clubs',6]], dmg:'2d12',
+    xp:300, tr:'f', align:'ce',
+    desc:'Two heads, and both of them are listening now. They are agreeing, the clubs are coming, and the field is going.' });
+  M({ id:'drow matron', n:'Drow Matron', hd:'4d6', ac:15, mv:10, atk:[['Sword',4]], dmg:'1d10',
+    sp:{ magic:true, darkvision:true }, xp:90, tr:'e', align:'le',
+    desc:'She keeps the web and the thread, and she is three doors ahead of you. The dark is listening, and the name is spoken.' });
+
+  /* ================= WAVE 2: more undead ================= */
+  M({ id:'skeleton warrior', n:'Skeleton Warrior', hd:'2d6', ac:15, mv:9, atk:[['Sword',1]], dmg:'1d8',
+    turn:2, xp:10, tr:'d', align:'ne',
+    desc:'The bones of the one who held the line, holding the line still. The line is at the gate, and the gate is going.' });
+  M({ id:'skeleton captain', n:'Skeleton Captain', hd:'3d6', ac:15, mv:9, atk:[['Sword',2]], dmg:'1d10',
+    turn:3, xp:25, tr:'d', align:'ne',
+    desc:'It keeps the formation and the standard, and it does not stop when the others fall. The standard is turning, and the line is coming.' });
+  M({ id:'zombie brute', n:'Zombie Brute', hd:'3d6', ac:13, mv:7, atk:[['Claws',1]], dmg:'1d8',
+    turn:1, xp:10, tr:'-', align:'ne',
+    desc:'The big one in the grave, still holding the gate. The gate is going, the shoulder is coming, and it is not finished.' });
+  M({ id:'ghast', n:'Ghast', hd:'3d6', ac:14, mv:11, atk:[['Claws',2]], dmg:'1d6',
+    turn:3, sp:{ paralyze:2 }, xp:25, tr:'-', align:'ne',
+    desc:'A ghoul that has been in the cold too long, faster for it. The touch is on your wrist, and your wrist is going.' });
+  M({ id:'lich apprentice', n:'Lich Apprentice', hd:'5d6', ac:16, mv:10, atk:[['Touch',4]], dmg:'2d6',
+    turn:6, sp:{ level_drain:1, magic:true }, xp:200, tr:'e', align:'ce',
+    desc:'It kept the important parts and is still learning the rest. The rest is learning it back, and the air is doing a thing it should not do.' });
+  M({ id:'wight elder', n:'Wight Elder', hd:'3d6', ac:14, mv:10, atk:[['Claws',3]], dmg:'1d8',
+    turn:4, sp:{ level_drain:1 }, xp:40, tr:'e', align:'ne',
+    desc:'It has taken the levels of the ones who passed and wears the face of the last of them. The face is learning it, and the hand is on the shoulder.' });
+  M({ id:'mummy priest', n:'Mummy Priest', hd:'6d6', ac:16, mv:8, atk:[['Sceptre',4]], dmg:'2d6',
+    turn:6, sp:{ level_drain:1, poison:{ lvl:4 }, magic:true }, xp:200, tr:'f', align:'ne',
+    desc:'It was the keeper of the shrine and is still keeping it. The shrine is answering, and the light is doing a thing it should not do.' });
+  M({ id:'wraith lord', n:'Wraith Lord', hd:'5d6', ac:16, mv:14, atk:[['Touch',5]], dmg:'2d8',
+    turn:5, sp:{ level_drain:2, incorporeal:true }, xp:120, tr:'f', align:'ce',
+    desc:'It was the lord of the keep and is still ruling it. The keep is listening, the door is opening, and the name is spoken.' });
+  M({ id:'vampire spawn', n:'Vampire Spawn', hd:'4d6', ac:15, mv:12, atk:[['Bite',3]], dmg:'1d8',
+    turn:5, sp:{ level_drain:1, regeneration:2 }, xp:90, tr:'e', align:'ce',
+    desc:'Made in the dark, it does not sleep in the dark. It is in the room, the room is listening, and the name is spoken.' });
+  M({ id:'revenant knight', n:'Revenant Knight', hd:'6d6', ac:17, mv:11, atk:[['Sword',5]], dmg:'2d8',
+    turn:5, sp:{ incorporeal:true }, xp:200, tr:'f', align:'ne',
+    desc:'It died with the oath unbroken and is coming back to break it. The sword is turning, the oath is spoken, and the dark is listening.' });
+
+  /* ================= WAVE 2: more reptiles & aquatic ================= */
+  M({ id:'giant alligator', n:'Giant Alligator', hd:'6d6', ac:14, mv:10, swim:true, atk:[['Jaws',4]], dmg:'3d8',
+    sp:{ constrict:true }, xp:150, tr:'d',
+    desc:'It ate the boat and is still under the log. The log is moving, and the water is listening.' });
+  M({ id:'giant toad', n:'Giant Toad', hd:'2d6', ac:13, mv:10, atk:[['Jaws',1]], dmg:'1d8',
+    xp:15, tr:'-',
+    desc:'It sits in the bog and does not move until the heron is close. The heron is in the mouth, and the mouth is closing.' });
+  M({ id:'giant snake', n:'Giant Snake', hd:'4d6', ac:14, mv:12, atk:[['Coils',3]], dmg:'2d6',
+    sp:{ constrict:true }, xp:60, tr:'d',
+    desc:'Long, calm, and unhurried. By the time the legs stop working, it has already decided what it will do next.' });
+  M({ id:'drake', n:'Drake', hd:'4d6', ac:15, mv:13, fly:true, atk:[['Bite',3]], dmg:'1d10',
+    sp:{ breath:{ kind:'fire', dmg:'3d6', range:3, save:1 } }, xp:60, tr:'d',
+    desc:'The dragon\u2019s shape without the dragon\u2019s mind, meaner for it. The breath is coming, and the field is burning.' });
+  M({ id:'gorgon', n:'Gorgon', hd:'5d6', ac:15, mv:10, atk:[['Spear',3]], dmg:'1d10',
+    sp:{ petrify:{ save:2 } }, xp:90, tr:'e',
+    desc:'Do not look at the hair. The hair is doing a thing to the blood, the blood is turning to stone, and the spear is for the ones already stone.' });
+  M({ id:'water snake', n:'Water Snake', hd:'1d6', ac:12, mv:12, swim:true, atk:[['Bite',0]], dmg:'1d4',
+    sp:{ poison:{ lvl:1 } }, xp:2, tr:'-',
+    desc:'It lies in the shallows with its head just under the water\u2019s skin. The leg goes in first. That is how it works.' });
+  M({ id:'giant salamander', n:'Giant Salamander', hd:'3d6', ac:14, mv:10, swim:true, atk:[['Jaws',2]], dmg:'1d8',
+    xp:40, tr:'d',
+    desc:'The size of a dog and very cross about being called a newt. It will show you why, and the jaw is closing.' });
+  M({ id:'selkie', n:'Selkie', hd:'2d6', ac:13, mv:10, swim:true, atk:[['Claws',1]], dmg:'1d6',
+    sp:{ shapeshift:true }, xp:15, tr:'d', align:'ne',
+    desc:'It wears the seal-skin on the shore and the face of the man it liked. The man is in the water, and the water is moving.' });
+  M({ id:'drownie', n:'Drownie', hd:'1d6', ac:13, mv:10, swim:true, atk:[['Pull',0]], dmg:'1d4',
+    turn:2, sp:{ drown:true }, xp:5, tr:'-', align:'ne',
+    desc:'The hand under the boat, the cold on the ankle. It is pulling, the water is moving, and the boat is listing.' });
+  M({ id:'bunyip', n:'Bunyip', hd:'4d6', ac:14, mv:11, swim:true, atk:[['Jaws',3]], dmg:'2d6',
+    xp:60, tr:'d', align:'ce',
+    desc:'The thing in the billabong, the sound under the hut. It is under the boat, the boat is listing, and the water is moving.' });
+  M({ id:'narwhal', n:'Narwhal', hd:'8d6', ac:15, mv:12, swim:true, atk:[['Tusk',5]], dmg:'4d6',
+    xp:300, tr:'d', size:'l', align:'nn',
+    desc:'It does not hate the boat. It simply wants to be somewhere else. The tusk is where the keel was, and the keel is going.' });
+  M({ id:'walrus', n:'Walrus', hd:'6d6', ac:14, mv:9, swim:true, atk:[['Tusks',4]], dmg:'3d6',
+    xp:150, tr:'-', size:'l',
+    desc:'Asleep on the ice, the size of a rowboat, its ear turning toward you. The ice is moving.' });
+  M({ id:'giant squid', n:'Giant Squid', hd:'10d6', ac:15, mv:10, swim:true, atk:[['Tentacles',6]], dmg:'4d6',
+    sp:{ squeeze:true }, xp:400, tr:'e', size:'l',
+    desc:'In the deep, very hungry, and already under the hull. The hull is going, and the water is moving.' });
+  M({ id:'giant turtle', n:'Giant Turtle', hd:'7d6', ac:16, mv:6, swim:true, atk:[['Jaws',4]], dmg:'3d6',
+    xp:250, tr:'d', size:'l',
+    desc:'The size of a rowboat, very old, carrying an island on its back. The island is moving, and the water is listening.' });
+  M({ id:'crab giant', n:'Crab Giant', hd:'8d6', ac:16, mv:7, atk:[['Claws',5]], dmg:'4d6',
+    xp:300, tr:'e', size:'l',
+    desc:'The size of a cart, pinching the shield off the arm and taking a bite out of it. The arm is going, and the shield is gone.' });
+
+  /* ================= WAVE 2: more aberrations ================= */
+  M({ id:'young beholder', n:'Young Beholder', hd:'6d6', ac:16, mv:10, fly:true, atk:[['Eye Rays',4]], dmg:'2d6',
+    sp:{ eyeRays:true }, xp:300, tr:'e', align:'ce',
+    desc:'One eye that looks and six that do what they are told. It is still learning, the rest is learning it back, and the room is listening.' });
+  M({ id:'elder mind flayer', n:'Elder Mind Flayer', hd:'8d6', ac:16, mv:10, atk:[['Tentacles',5]], dmg:'2d8',
+    sp:{ charm:{ save:3 }, magic:true }, xp:400, tr:'f', align:'ce',
+    desc:'It flayed the keep and keeps the thoughts in jars. The jars are full, the keep is empty, and the dark is listening.' });
+  M({ id:'elder umber hulk', n:'Elder Umber Hulk', hd:'9d6', ac:17, mv:11, atk:[['Pincers',6]], dmg:'3d8',
+    sp:{ phase:true }, xp:600, tr:'f', align:'ce',
+    desc:'A shadow a little more real, learning the shape of the keep. The keep is learning it back, and the wall is going.' });
+  M({ id:'elder displacer', n:'Elder Displacer', hd:'7d6', ac:16, mv:12, atk:[['Claws',4]], dmg:'2d8',
+    sp:{ phase:true }, xp:200, tr:'e', align:'ne',
+    desc:'Not where you saw it, never where you saw it. The claws are in the shoulder, the body is three paces away, and the room is listening.' });
+  M({ id:'elder ocropus', n:'Elder Ocropus', hd:'5d6', ac:16, mv:12, atk:[['Tentacles',4]], dmg:'2d8',
+    sp:{ poison:{ lvl:4 } }, xp:90, tr:'e', align:'ce',
+    desc:'Wearing the dead man\u2019s face, very cross about being woken. The face is learning it, and the cave is listening.' });
+  M({ id:'greater mimic', n:'Greater Mimic', hd:'6d6', ac:16, mv:8, atk:[['Bite',5]], dmg:'2d8',
+    sp:{ shapeshift:true, adhesive:true }, xp:150, tr:'f', align:'ne',
+    desc:'The door you are about to open, the bed you are about to get into. It has been a door for a very long time, and it is patient.' });
+  M({ id:'nycaloth', n:'Nycaloth', hd:'4d6', ac:15, mv:10, atk:[['Maw',3]], dmg:'2d6',
+    sp:{ phase:true }, xp:60, tr:'e', align:'ce',
+    desc:'The thing under the floor, chewing through the stone, very hungry, chewing for a long time. The floor is going.' });
+  M({ id:'mordyan ghar', n:'Mordyan Ghar', hd:'5d6', ac:16, mv:11, atk:[['Maw',4]], dmg:'2d8',
+    sp:{ phase:true }, xp:90, tr:'e', align:'ce',
+    desc:'The thing in the wall, learning the shape of you, getting very good at it. The wall is moving, and the room is listening.' });
+  M({ id:'noci ghar', n:'Noci Ghar', hd:'3d6', ac:15, mv:12, atk:[['Maw',2]], dmg:'1d8',
+    sp:{ phase:true }, xp:40, tr:'d', align:'ce',
+    desc:'The small one of the ghars, very quick, already in the room, looking at you with a mouth already open.' });
+
+  /* ================= WAVE 2: more elementals, fiends, constructs ================= */
+  M({ id:'greater earth elemental', n:'Earth Elemental (Greater)', hd:'10d6', ac:17, mv:9, atk:[['Fist',7]], dmg:'5d6',
+    sp:{ earth:true }, xp:500, tr:'-', align:'ne',
+    desc:'The hill that walks, holding the boulder the size of the house. The house is going, and the ground is shaking.' });
+  M({ id:'greater fire elemental', n:'Fire Elemental (Greater)', hd:'9d6', ac:16, mv:15, atk:[['Flame',6]], dmg:'5d6',
+    sp:{ fire:true }, xp:300, tr:'-', align:'ne',
+    desc:'The fire a little personal, very hot, already in the room. The room is burning, and the air is doing a thing it should not do.' });
+  M({ id:'greater water elemental', n:'Water Elemental (Greater)', hd:'10d6', ac:16, mv:13, swim:true, atk:[['Flow',6]], dmg:'5d6',
+    sp:{ water:true }, xp:500, tr:'-', align:'ne',
+    desc:'The river a little angry, very wet, already in the room. The room is going, and the ground is softer.' });
+  M({ id:'greater air elemental', n:'Air Elemental (Greater)', hd:'8d6', ac:16, mv:17, fly:true, atk:[['Gust',5]], dmg:'4d6',
+    sp:{ air:true }, xp:300, tr:'-', align:'ne',
+    desc:'The wind a little personal, already in the room. The room is moving, and the air is doing a thing it should not do.' });
+  M({ id:'greater ice mephit', n:'Ice Mephit (Greater)', hd:'3d6', ac:15, mv:14, fly:true, atk:[['Frost',2]], dmg:'1d8',
+    sp:{ breath:{ kind:'cold', dmg:'3d6', range:4, save:1 } }, xp:25, tr:'-', align:'ce',
+    desc:'The snowflake a little meaner, breathing the cold out of itself. The cold is in the joints, and the joints are going.' });
+  M({ id:'greater fire mephit', n:'Fire Mephit (Greater)', hd:'3d6', ac:15, mv:15, fly:true, atk:[['Ember',2]], dmg:'1d8',
+    sp:{ breath:{ kind:'fire', dmg:'3d6', range:4, save:1 } }, xp:25, tr:'-', align:'ce',
+    desc:'The coal a little crosser, breathing the fire out of itself. The fire is in the air, and the air is hot.' });
+  M({ id:'elder quasit', n:'Elder Quasit', hd:'2d6', ac:15, mv:14, atk:[['Claws',2]], dmg:'1d6',
+    xp:15, tr:'-', align:'le',
+    desc:'The shadow in the corner a little more real, very hungry, learning the shape of the room. The room is learning it back.' });
+  M({ id:'elder imp', n:'Elder Imp', hd:'2d6', ac:15, mv:15, fly:true, atk:[['Dart',2]], dmg:'1d6',
+    sp:{ darkmagic:true }, xp:15, tr:'-', align:'le',
+    desc:'The size of a cat, very cross, throwing darts and laughing. The laugh is in the walls, and the walls are listening.' });
+  M({ id:'ice demon', n:'Ice Demon', hd:'6d6', ac:16, mv:12, atk:[['Claws',4]], dmg:'2d6',
+    sp:{ cold:true }, xp:180, tr:'e', align:'ce',
+    desc:'The cold a little personal, very hungry, already in the room. The room is going, and the joints are cold.' });
+  M({ id:'red demon', n:'Red Demon', hd:'7d6', ac:16, mv:13, atk:[['Claws',5]], dmg:'2d8',
+    sp:{ fire:true }, xp:250, tr:'e', align:'ce',
+    desc:'The fire a little personal, very angry, already in the room. The room is burning, and the air is hot.' });
+  M({ id:'shadow demon', n:'Shadow Demon', hd:'6d6', ac:16, mv:14, atk:[['Claws',4]], dmg:'2d6',
+    sp:{ drain:2 }, xp:180, tr:'e', align:'ce',
+    desc:'The dark behind the candle a little hungry, reaching for you. The light is smaller, and the shadow is learning your shape.' });
+  M({ id:'water demon', n:'Water Demon', hd:'6d6', ac:15, mv:12, swim:true, atk:[['Claws',4]], dmg:'2d6',
+    sp:{ water:true }, xp:180, tr:'e', align:'ce',
+    desc:'The water a little angry, very wet, already in the room. The room is going, and the ground is softer.' });
+  M({ id:'greater barbed devil', n:'Barbed Devil (Greater)', hd:'5d6', ac:16, mv:13, atk:[['Barbs',5]], dmg:'2d8',
+    sp:{ fire:true }, xp:90, tr:'e', align:'le',
+    desc:'Covered in barbs, a little hotter, very patient, three doors ahead of you. The door is locked.' });
+  M({ id:'erinyes', n:'Erinyes', hd:'7d6', ac:16, mv:14, fly:true, atk:[['Whip',5]], dmg:'2d6',
+    sp:{ fear:{ save:3 } }, xp:250, tr:'e', align:'le',
+    desc:'The avenging thing of the dark, holding the whip, very patient. The whip is coming, and the fear is in the chest.' });
+  M({ id:'automaton', n:'Automaton', hd:'6d6', ac:17, mv:9, atk:[['Fist',5]], dmg:'3d6',
+    xp:180, tr:'e', align:'nn',
+    desc:'The machine a little alive, very precise, holding you, not in a hurry. The fist is coming.' });
+  M({ id:'wood golem', n:'Wood Golem', hd:'7d6', ac:16, mv:9, atk:[['Branch',5]], dmg:'4d6',
+    xp:250, tr:'e', align:'nn',
+    desc:'The tree a little alive, very heavy, holding you, not in a hurry. The branch is coming.' });
+  M({ id:'flesh golem', n:'Flesh Golem', hd:'8d6', ac:17, mv:10, atk:[['Fist',6]], dmg:'4d6',
+    sp:{ regen:5 }, xp:300, tr:'e', align:'ne',
+    desc:'The flesh a little alive, very hungry, holding you, not in a hurry. The fist is coming.' });
+  M({ id:'blight', n:'Blight', hd:'7d6', ac:15, mv:9, atk:[['Thorn',5]], dmg:'3d6',
+    xp:250, tr:'e', align:'ne',
+    desc:'The rot a little alive, very patient, spreading through the field. The field is going, and the grain is brown.' });
+  M({ id:'strangler vine', n:'Strangler Vine', hd:'4d6', ac:14, mv:6, atk:[['Coils',3]], dmg:'2d6',
+    sp:{ constrict:true }, xp:60, tr:'-', align:'ne',
+    desc:'The vine a little alive, very patient, already around the leg. The leg is going, and the vine is tighter.' });
+
+  /* ================= WAVE 2: more human & giant ================= */
+  M({ id:'bandit chief', n:'Bandit Chief', hd:'2d6', ac:14, mv:10, atk:[['Longsword',2]], dmg:'1d10',
+    xp:15, tr:'d', align:'ce',
+    desc:'It took the road and the toll, and it is holding the sword. Not as brave as it looks, but enough. The road is paying.' });
+  M({ id:'cult leader', n:'Cult Leader', hd:'3d6', ac:14, mv:10, atk:[['Sickle',2]], dmg:'1d6',
+    sp:{ darkmagic:true }, xp:40, tr:'e', align:'ne',
+    desc:'The hood the colour of the inside of a grave, chanting a name that is not a name. The name is spoken, and the dark is listening.' });
+  M({ id:'pirate', n:'Pirate', hd:'1d6', ac:13, mv:11, atk:[['Cutlass',1]], dmg:'1d8',
+    xp:5, tr:'d', align:'ce',
+    desc:'It took the ship and the ring, and it is holding the cutlass. Not as brave as it looks, but enough. The ship is listing.' });
+  M({ id:'duelist', n:'Duelist', hd:'2d6', ac:14, mv:11, atk:[['Rapier',2]], dmg:'1d6',
+    xp:15, tr:'d', align:'cn',
+    desc:'The name, the blade, very fast. The blade is turning, the name is spoken, and the road is listening.' });
+  M({ id:'mercenary', n:'Mercenary', hd:'1d6', ac:14, mv:10, atk:[['Sword',1]], dmg:'1d8',
+    xp:5, tr:'-', align:'ne',
+    desc:'Fights for the coin and will fight for the coin until it runs out. The coin is in the pouch, and the road is paying.' });
+  M({ id:'noble guard', n:'Noble Guard', hd:'2d6', ac:16, mv:10, atk:[['Sword',2]], dmg:'1d10',
+    xp:15, tr:'d', align:'lg',
+    desc:'The livery, the gate, very good at its job. The sword is turning, and the gate is listening.' });
+  M({ id:'frost giant champion', n:'Frost Giant Champion', hd:'12d8', ac:16, mv:9, atk:[['Greatclub',9]], dmg:'5d8',
+    sp:{ breath:{ kind:'cold', dmg:'8d6', range:5, save:1 } }, xp:800, tr:'f', align:'ce',
+    desc:'Fights for the honour of the ice and throws the cold when the honour is touched. The cold is coming, and the field is frozen.' });
+  M({ id:'fire giant champion', n:'Fire Giant Champion', hd:'13d8', ac:17, mv:9, atk:[['Greatclub',9]], dmg:'5d8',
+    sp:{ breath:{ kind:'fire', dmg:'8d6', range:5, save:1 } }, xp:800, tr:'f', align:'ce',
+    desc:'Fights for the honour of the caldera and throws the fire when the honour is touched. The fire is coming, and the field is burning.' });
+  M({ id:'hill giant brute', n:'Hill Giant Brute', hd:'10d8', ac:15, mv:9, atk:[['Club',7]], dmg:'3d8',
+    xp:500, tr:'e', align:'ce',
+    desc:'The biggest of the big ones, throwing the boulder the size of the house. The house is going, and the field is listening.' });
+  M({ id:'white giant elder', n:'White Giant Elder', hd:'12d8', ac:16, mv:9, atk:[['Greatclub',8]], dmg:'4d8',
+    xp:700, tr:'f', align:'ce',
+    desc:'White as the snowfield, very cold, angry that you walk on its ice. The ice is going, and the cold is in the joints.' });
+
+  /* ================= WAVE 2: more dragon wyrms & plants & misc ================= */
+  M({ id:'black dragon wyrm', n:'Black Dragon (Wyrm)', hd:'4d6', ac:15, mv:13, fly:true, atk:[['Bite',3]], dmg:'1d8',
+    sp:{ breath:{ kind:'acid', dmg:'3d6', range:3, save:1 } }, xp:100, tr:'e', align:'ce',
+    desc:'The young of the fen, still learning the shape of the breath. The breath is coming, and the air is sour.' });
+  M({ id:'white dragon wyrm', n:'White Dragon (Wyrm)', hd:'3d6', ac:15, mv:13, fly:true, atk:[['Bite',2]], dmg:'1d6',
+    sp:{ breath:{ kind:'cold', dmg:'2d6', range:3, save:1 } }, xp:75, tr:'e', align:'ce',
+    desc:'The young of the snowfield, still learning the shape of the cold. The cold is coming, and the joints are cold.' });
+  M({ id:'red dragon wyrm', n:'Red Dragon (Wyrm)', hd:'5d6', ac:16, mv:13, fly:true, atk:[['Bite',4]], dmg:'1d8',
+    sp:{ breath:{ kind:'fire', dmg:'4d6', range:3, save:1 } }, xp:150, tr:'e', align:'ce',
+    desc:'The young of the mountain, still learning the shape of the fire. The fire is coming, and the air is hot.' });
+  M({ id:'green dragon wyrm', n:'Green Dragon (Wyrm)', hd:'4d6', ac:15, mv:12, fly:true, atk:[['Bite',3]], dmg:'1d8',
+    sp:{ breath:{ kind:'poison', dmg:'3d6', range:3, save:1 } }, xp:100, tr:'e', align:'ce',
+    desc:'The young of the forest, still learning the shape of the poison. The poison is coming, and the air is hard to breathe.' });
+  M({ id:'blue dragon wyrm', n:'Blue Dragon (Wyrm)', hd:'4d6', ac:15, mv:13, fly:true, atk:[['Bite',3]], dmg:'1d8',
+    sp:{ breath:{ kind:'lightning', dmg:'3d6', range:3, save:1 } }, xp:100, tr:'e', align:'ce',
+    desc:'The young of the desert, still learning the shape of the lightning. The lightning is coming, and the air is charged.' });
+  M({ id:'copper dragon wyrm', n:'Copper Dragon (Wyrm)', hd:'3d6', ac:15, mv:12, fly:true, atk:[['Bite',2]], dmg:'1d6',
+    sp:{ breath:{ kind:'acid', dmg:'2d6', range:3, save:1 } }, xp:75, tr:'e', align:'ce',
+    desc:'The young of the copper, still learning the shape of the acid. The acid is coming, and the air is sour.' });
+  M({ id:'brass dragon wyrm', n:'Brass Dragon (Wyrm)', hd:'3d6', ac:14, mv:12, fly:true, atk:[['Bite',2]], dmg:'1d6',
+    sp:{ breath:{ kind:'fire', dmg:'2d6', range:3, save:1 } }, xp:75, tr:'e', align:'ce',
+    desc:'The young of the brass, still learning the shape of the fire. The fire is coming, and the air is warm.' });
+  M({ id:'bronze dragon wyrm', n:'Bronze Dragon (Wyrm)', hd:'4d6', ac:15, mv:13, fly:true, atk:[['Bite',3]], dmg:'1d8',
+    sp:{ breath:{ kind:'lightning', dmg:'3d6', range:3, save:1 } }, xp:100, tr:'e', align:'ce',
+    desc:'The young of the bronze, still learning the shape of the lightning. The lightning is coming, and the air is charged.' });
+  M({ id:'silver dragon wyrm', n:'Silver Dragon (Wyrm)', hd:'4d6', ac:15, mv:13, fly:true, atk:[['Bite',3]], dmg:'1d8',
+    sp:{ breath:{ kind:'cold', dmg:'3d6', range:3, save:1 } }, xp:100, tr:'e', align:'lg',
+    desc:'The young of the silver, still learning the shape of the cold. The cold is coming, and the joints are cold.' });
+  M({ id:'gold dragon wyrm', n:'Gold Dragon (Wyrm)', hd:'5d6', ac:16, mv:13, fly:true, atk:[['Bite',4]], dmg:'1d8',
+    sp:{ breath:{ kind:'fire', dmg:'4d6', range:3, save:1 } }, xp:150, tr:'e', align:'lg',
+    desc:'The young of the gold, still learning the shape of the fire. The fire is coming, and the air is warm.' });
+  M({ id:'thornweave', n:'Thornweave', hd:'5d6', ac:15, mv:8, atk:[['Thorns',4]], dmg:'2d6',
+    xp:90, tr:'d', align:'ne',
+    desc:'The hedge a little alive, very thorny, already around the leg. The leg is going, and the thorn is deeper.' });
+  M({ id:'carrion flower', n:'Carrion Flower', hd:'3d6', ac:14, mv:6, atk:[['Tendrils',2]], dmg:'1d8',
+    sp:{ poison:{ lvl:3 } }, xp:40, tr:'-', align:'ne',
+    desc:'The flower that smells of the grave, very hungry, already around the hand. The hand is going, and the smell is stronger.' });
+  M({ id:'will o wisp', n:'Will-o\u2019-wisp', hd:'1d6', ac:15, mv:16, fly:true, atk:[['Touch',-1]], dmg:'1d4',
+    xp:5, tr:'-', align:'ce', size:'s',
+    desc:'The light in the fen, very patient, leading you somewhere. The somewhere is the bog, and the bog is listening.' });
+  M({ id:'lemure', n:'Lemure', hd:'2d6', ac:14, mv:14, fly:true, atk:[['Touch',1]], dmg:'1d4',
+    turn:3, sp:{ incorporeal:true }, xp:15, tr:'-', align:'ne',
+    desc:'The light in the grave that is not a firefly, very cold, leading you somewhere. The somewhere is the dark, and the dark is listening.' });
+  M({ id:'hobgoblin shaman', n:'Hobgoblin Shaman', hd:'2d6', ac:14, mv:11, atk:[['Spear',1]], dmg:'1d6',
+    sp:{ magic:true }, xp:15, tr:'d', align:'le',
+    desc:'The bone crown, singing to the storm. The storm is answering, the storm is turning, and the field is listening.' });
+  M({ id:'orc warg rider', n:'Orc Warg Rider', hd:'2d8', ac:14, mv:14, atk:[['Spear',2]], dmg:'1d8',
+    xp:25, tr:'d', align:'ce',
+    desc:'Rides the warg, very fast. The warg is at the shield, the shield is going, and the road is listening.' });
+  M({ id:'troll wight', n:'Troll Wight', hd:'4d6', ac:15, mv:11, atk:[['Claws',4]], dmg:'2d6',
+    turn:5, sp:{ regen:3, level_drain:1 }, xp:120, tr:'e', align:'ne',
+    desc:'The troll that did not die right, still healing, still reaching. The touch is on the shoulder, and the shoulder is going.' });
+  M({ id:'skeleton dragon', n:'Skeleton Dragon', hd:'10d6', ac:17, mv:14, fly:true, atk:[['Bite',7]], dmg:'3d6',
+    turn:7, xp:600, tr:'f', align:'ne', size:'l',
+    desc:'The bones of the dragon, still holding the shape, very old. The wing is turning, and the keep is listening.' });
+  M({ id:'elder giant bat', n:'Giant Bat (Elder)', hd:'2d6', ac:15, mv:17, fly:true, atk:[['Bite',1]], dmg:'1d8',
+    xp:15, tr:'-',
+    desc:'The size of a hound, very old, hearing the heartbeat three corridors off. The heartbeat is slowing.' });
+  M({ id:'elder owlbear', n:'Owlbear (Elder)', hd:'6d6', ac:14, mv:11, atk:[['Talons',3]], dmg:'2d8',
+    xp:120, tr:'e',
+    desc:'Grumbles, huffs, swats the air, and will swat you the same. The swat is coming, and the air is cracking.' });

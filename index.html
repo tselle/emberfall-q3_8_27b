@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Emberfall: The Emberwild Saga</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <span id="top-title">EMBERFALL</span>
+    <span id="top-loc"></span>
+    <span id="top-clock"></span>
+    <span id="top-gold"></span>
+  </header>
+  <div id="stage">
+    <canvas id="cv" width="800" height="450"></canvas>
+    <div id="watch" class="hidden">
+      <canvas id="minimap" width="150" height="150"></canvas>
+      <div id="vitals"></div>
+    </div>
+    <div id="bar" class="hidden"></div>
+    <div id="pad" class="hidden">
+      <div class="pad-side">
+        <button data-pad="back" class="pad-btn" title="Back">&#9664;</button>
+        <button data-pad="fwd" class="pad-btn" title="Forward">&#9654;</button>
+        <button data-pad="act" class="pad-btn pad-act" title="Search / Interact">&#9673;</button>
+        <button data-pad="menu" class="pad-btn" title="Menu">&#9776;</button>
+      </div>
+      <div class="pad-dirs">
+        <button data-pad="tleft" class="pad-btn" title="Turn left">&#171;</button>
+        <button data-pad="tside-l" class="pad-btn" title="Sidestep left">&#9664;</button>
+        <button data-pad="tside-r" class="pad-btn" title="Sidestep right">&#9654;</button>
+        <button data-pad="tright" class="pad-btn" title="Turn right">&#187;</button>
+      </div>
+    </div>
+    <div id="ui"></div>
+    <div id="toast"></div>
+  </div>
+</div>
+
+<!-- load order matters: rules, data, modules, monsters, wilds, treasure,
+     adventures, figures, view3d, ui, combat, overland, campaign, journal,
+     map, bestiary, navpad, watch, game -->
+<script src="js/rules.js"></script>
+<script src="js/data.js"></script>
+<script src="js/modules.js"></script>
+<script src="js/monsters.js"></script>
+<script src="js/wilds.js"></script>
+<script src="js/treasure.js"></script>
+<script src="js/adventures.js"></script>
+<script src="js/figures.js"></script>
+<script src="js/view3d.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/combat.js"></script>
+<script src="js/overland.js"></script>
+<script src="js/campaign.js"></script>
+<script src="js/journal.js"></script>
+<script src="js/map.js"></script>
+<script src="js/bestiary.js"></script>
+<script src="js/navpad.js"></script>
+<script src="js/watch.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
