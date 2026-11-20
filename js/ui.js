@@ -85,7 +85,7 @@ var UI = (function () {
       title: 'How to Play',
       text: 'You are a small company in the Emberwild. Towns are seen in first person (3D); the wilds and combat are tactical maps.',
       lines: [
-        'Move with the on-screen pad or WASD / arrows. Q / E sidestep, Space or the action button interacts: people, doors, counters, loot, stairs. When someone or something is in front of you, a prompt appears at the bottom of the view — press Space (or the ◙ button) to act. F searches, R camps, 1–6 open character sheets, M map, J journal, B bestiary, Esc menu.',
+        'Move with the on-screen pad or WASD / arrows. Q / E sidestep, Space, Enter or the action button interacts: people, doors, counters, loot, stairs. In a dialog, Enter confirms the main option — e.g. “Enter Thornwick”. When someone or something is in front of you, a prompt appears at the bottom of the view — press Space (or the ◙ button) to act. F searches, R camps, 1–6 open character sheets, M map, J journal, B bestiary, Esc menu.',
         'A Ready Company starts at once; or build your own party of up to six.',
         'Time matters. Town and dungeon moves cost minutes; the wilds cost more. Night brings bolder monsters.',
         'Combat is turn-based. Move, attack, defend, cast, drink, or turn undead. Roll d20 + bonus against THAC0 to hit. Saves use the five second-edition categories. Foes with low morale may break and run. Switch on Auto in the combat bar to let the company fight itself.',

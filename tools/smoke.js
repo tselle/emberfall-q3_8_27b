@@ -293,6 +293,18 @@ const G = () => context.Campaign.G;
   context.Overland.step(0, 1);
   ok(G().loc.y === y0 + 1 || G().loc.y === y0, 'overland step moved or blocked');
   ok(G().minute > 0, 'time advanced');
+  // Enter key acts as the action key: on a site it opens the site dialog
+  context.UI.close();
+  {
+    const wS = context.Campaign.advWorld(G().activeAdv);
+    const advS = context.ADV.get(G().activeAdv);
+    const ts = advS.wilds.sites.find(s => s.kind === 'town');
+    wS.wilds.x = ts.x; wS.wilds.y = ts.y;
+    context.Overland.enter(G().activeAdv);
+    fireKey('Enter');
+    ok(sandbox.document.getElementById('ui').classList.contains('open'), 'Enter opens the site dialog on a site');
+    context.UI.close();
+  }
 
   console.log('== town ==');
   act('dlg.enter-town');

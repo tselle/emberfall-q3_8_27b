@@ -145,6 +145,17 @@ function waitFor(fn, ms, what) {
   await evalJs("Town.leaveTown()");
   ok(await evalJs("Campaign.G.phase") === 'overland', 'back to overland');
 
+  console.log('== enter town via Enter key ==');
+  await evalJs("(function(){var a=ADV.get(Campaign.G.activeAdv); var w=Campaign.advWorld(Campaign.G.activeAdv); var t=a.wilds.sites.find(function(s){return s.kind==='town';}); w.wilds.x=t.x; w.wilds.y=t.y; Overland.enter(Campaign.G.activeAdv); Overland.stepSiteButton();})()");
+  ok(await evalJs("UI.isOpen()"), 'site dialog open on the town site');
+  await send('Input.dispatchKeyEvent', { type: 'keyDown', code: 'Enter', key: 'Enter', windowsVirtualKeyCode: 13, nativeVirtualKeyCode: 13 });
+  await send('Input.dispatchKeyEvent', { type: 'keyUp', code: 'Enter', key: 'Enter', windowsVirtualKeyCode: 13, nativeVirtualKeyCode: 13 });
+  await new Promise((r) => setTimeout(r, 200));
+  ok(await evalJs("Campaign.G.phase") === 'town', 'Enter key entered the town');
+  ok(await evalJs("!UI.isOpen()"), 'dialog auto-dismissed on entering town');
+  await evalJs("Town.leaveTown()");
+  ok(await evalJs("Campaign.G.phase") === 'overland', 'back to overland after Enter-entry');
+
   console.log('== dungeon via real DOM ==');
   await evalJs("Dungeon.enter(Campaign.G.activeAdv, 0)");
   ok(await evalJs("Campaign.G.phase") === 'dungeon', 'dungeon phase');

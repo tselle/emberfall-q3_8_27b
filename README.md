@@ -40,8 +40,10 @@ It plays like a late-1980s "gold box" computer RPG:
   column) step forward/back, `◙` search/interact, `☰` menu. Tap the map to
   step; tap enemies to attack.
 - **Keyboard** — `WASD`/arrows move and turn, `Q`/`E` sidestep, `F` search,
-  `R` camp, `Space` interact, `M` map, `J` journal, `B` bestiary,
-  `1–6` character sheets, `Esc` menu / back. Parties may hold up to six.
+  `R` camp, `Space` or `Enter` interact (in a dialog, `Enter` confirms the
+  main option, e.g. *Enter {town}*, and the dialog dismisses as you go
+  through), `M` map, `J` journal, `B` bestiary, `1–6` character sheets,
+  `Esc` menu / back. Parties may hold up to six.
 
 ## Saves
 

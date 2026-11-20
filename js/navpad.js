@@ -15,6 +15,7 @@ var NavPad = (function () {
     'KeyA': 'tside-l', 'KeyD': 'tside-r',
     'KeyQ': 'tside-l', 'KeyE': 'tside-r',
     'Space': 'act',
+    'Enter': 'enter', 'NumpadEnter': 'enter',
     'KeyF': 'search', 'KeyR': 'camp',
     'KeyM': 'map', 'KeyI': 'inventory', 'KeyJ': 'journal',
     'KeyB': 'bestiary', 'KeyP': 'party', 'Escape': 'menu',
@@ -163,6 +164,19 @@ var NavPad = (function () {
         return;
       }
       if (k === 'back') { if (UI.isOpen()) { UI.close(); return; } handle('back'); return; }
+      if (k === 'enter') {
+        // Enter confirms the primary action of an open dialog
+        // (first button: 'Enter {town}', 'Descend', 'Go in', …).
+        // With no panel open it acts like Space (interact / step site).
+        if (UI.isOpen()) {
+          var r = UI.root();
+          var b = r && r.querySelector ? r.querySelector('.dlg-actions .btn') : null;
+          if (b && b.click) { b.click(); }
+          return;
+        }
+        handle('act');
+        return;
+      }
       if (UI.isOpen() && (k === 'act')) { UI.close(); return; }
       handle(k);
     });

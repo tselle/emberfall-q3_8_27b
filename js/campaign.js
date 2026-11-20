@@ -367,6 +367,7 @@ var Town = (function () {
     View.setPos(t.gate.x + 0.5, t.gate.y + 0.5, -Math.PI / 2);
     Campaign.setPhase('town', { kind: 'town', adv: advId, x: t.gate.x, y: t.gate.y });
     Campaign.log('The company enters ' + a.townName + '.');
+    UI.close(); // entering the town dismisses any open dialog (e.g. 'Enter {town}')
     UI.setBar([
       { id: 'town.interact', label: 'Action', primary: true },
       { id: 'map.open', label: 'Map' },
@@ -779,6 +780,7 @@ var Dungeon = (function () {
     View.setPos(px + 0.5, py + 0.5, keepDir);
     Campaign.setPhase('dungeon', { kind: 'dungeon', adv: advId, floor: floorIdx, x: px, y: py });
     markVisited(px, py);
+    UI.close(); // entering the dungeon dismisses any open dialog (e.g. 'Descend')
     UI.setBar([
       { id: 'dungeon.interact', label: 'Action', primary: true },
       { id: 'dungeon.search', label: 'Search' },
