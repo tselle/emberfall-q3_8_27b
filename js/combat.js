@@ -26,8 +26,8 @@ var Combat = (function () {
       x: x, y: y, hp: m.hp, mhp: m.hp,
       ac: m.ac, thac0: 21 - Math.min(hdVal, 6),
       mv: Math.max(2, Math.ceil((m.mv || 10) / 2)),
-      atk: (19 - (21 - Math.min(hdVal, 6))),
-      dmg: m.dmg, atkBonus: 0, sp: m.sp || {}, xp: m.xp,
+      atk: 0, atkBonus: 0, monTHAC0: (hdVal <= 10 ? 20 - hdVal : Math.max(1, 10 - (hdVal - 10))),
+      dmg: m.dmg, sp: m.sp || {}, xp: m.xp,
       tr: m.tr, turn: m.turn, hdVal: hdVal, size: m.size, morale: m.morale != null ? m.morale : 5,
       acted: false, dead: false, statuses: [], fled: false, moraleDone: false,
       monId: mon.id
@@ -116,9 +116,11 @@ var Combat = (function () {
     var mobs = (opts.mobs || []).map(function (m) {
       var ax = m.x, ay = m.y;
       if (grid.kind !== 'dungeon') { ax = grid.w - 3; ay = 2 + Math.floor(Math.random() * (grid.h - 4)); if (!freeCell(grid, ax, ay, actors)) { ay = grid.h >> 1; } }
-      return monsterActor(m, ax, ay);
+      var monA = monsterActor(m, ax, ay);
+      if (monA) actors.push(monA); // occupy the cell before the next mob spawns
+      return monA;
     }).filter(Boolean);
-    actors = actors.concat(mobs);
+    // mobs were pushed into actors as they spawned (cell occupancy)
 
     C = {
       kind: kind, adv: opts.adv, floor: opts.floor, grid: grid,
@@ -273,9 +275,14 @@ var Combat = (function () {
   }
 
   function attackRoll(attacker, defender) {
-    var bonus = attacker.side === 'party' ? attacker.atkBonus : attacker.atk;
+    // 2nd ed: roll d20 >= (attacker THAC0 - defender AC - bonuses).
+    // Party actors store the class-table THAC0 and roll 19 - AC - bonus,
+    // because atkBonus already contains (19 - tableTHAC0). Monsters use the
+    // MM to-hit table by HD (monTHAC0) with no extra bonus.
+    var bonus = attacker.side === 'party' ? (attacker.atkBonus || 0) : 0;
+    var base = attacker.side === 'party' ? 19 : (attacker.monTHAC0 != null ? attacker.monTHAC0 : 19);
     var roll = M.d20();
-    var need = defender.thac0;
+    var need = base - (defender.ac != null ? defender.ac : 0) - bonus;
     if (defender.defending) need += 1;
     var hit = roll >= need;
     C.roundMsgs.push((attacker.name) + ' attacks ' + defender.name + ' (' + roll + ' vs ' + need + (defender.defending ? ' defended' : '') + ') ' + (hit ? '— hits.' : '— misses.'));
@@ -419,11 +426,12 @@ var Combat = (function () {
   }
 
   function doAttack(a, t) {
-    if (!C) return false;
+    if (!C || !a || !t || t.dead) return false;
     var wi = weaponInfo(a);
-    if (wi.kind === 'ranged') {
+    if (wi.kind === 'ranged' && a.side === 'party') {
       if (ammoFor(ITEMS[a.char.equip.weapon]) <= 0) {
         C.roundMsgs.push('No ammunition!');
+        finishPlayerTurn();
         return false;
       }
       useAmmo(a);
@@ -457,10 +465,10 @@ var Combat = (function () {
       d = Math.max(1, d);
       dealDamage(t, d, 'from ' + wi.name);
       // level drain kill: none beyond damage
-      finishPlayerTurn();
-      return true;
     }
-    finishPlayerTurn();
+    // Only party turns self-advance here; monster turns advance via logMon()
+    // in monAct (otherwise a double advanceToNext would skip turns).
+    if (a.side === 'party') finishPlayerTurn();
     return true;
   }
 
@@ -755,7 +763,7 @@ var Combat = (function () {
   /* ---------------- monster AI ---------------- */
   function monAct(m) {
     if (!C) return;
-    if (m.dead) { advanceToNext(); return; }
+    if (m.dead || C.cur !== m) return;
     // morale: cowards may lose heart when hurt or losing allies
     if (!m.moraleDone && !m.turn && m.boss !== true && m.morale < 10) {
       var lostAlly = C.actors.some(function (o) { return o.side === 'mon' && o.dead && o !== m; });
@@ -796,7 +804,7 @@ var Combat = (function () {
     }
     // move toward target (simple greedy with fallback)
     var step = bestStep(m, target);
-    if (step) { m.x = step[0]; m.y = step[1]; }
+    if (step && !actorAt(step[0], step[1])) { m.x = step[0]; m.y = step[1]; }
     else {
       // wander
       var opts = [[1, 0], [-1, 0], [0, 1], [0, -1]].filter(function (o) { return freeCell(C.grid, m.x + o[0], m.y + o[1], C.actors); });

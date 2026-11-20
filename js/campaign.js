@@ -533,8 +533,9 @@ var Town = (function () {
 
   function facingCell() {
     var Gg = Campaign.G;
-    var vx = Math.round(View.dir / (Math.PI / 2)) % 4;
-    var dx = [0, 1, 0, -1][ (vx + 4) % 4 ], dy = [-1, 0, 1, 0][ (vx + 4) % 4 ];
+    var vx = ((Math.round(View.dir / (Math.PI / 2)) % 4) + 4) % 4;
+    // dir 0 = east, PI/2 = south, -PI/2 = north (matches the raycaster)
+    var dx = [1, 0, -1, 0][vx], dy = [0, 1, 0, -1][vx];
     return { x: Gg.loc.x + dx, y: Gg.loc.y + dy };
   }
 
@@ -571,13 +572,46 @@ var Town = (function () {
     if (evThere && evThere.kind === 'well') { UI.dialog({ title: 'The Old Well', text: 'The water is cold and honest. A sign by the lip: no washing before the chapel bell.', actions: [{ label: 'Close', act: 'close' }] }); return; }
     // door
     var d = a.town.doors[there];
-    if (d) { UI.dialog({ title: a.town.buildingsById[d.bld].name, text: 'The door is ' + (d.open !== false ? 'open.' : 'shut.') + ' Step through to go in.', actions: [{ label: 'Go in', act: 'close' }] }); return; }
+    if (d) { UI.dialog({ title: a.town.buildingsById[d.bld].name, text: 'The door is ' + (d.open !== false ? 'open.' : 'shut.') + ' Step through to go in.', actions: [{ label: 'Go in', act: 'town.enter-door', data: { bld: d.bld } }, { label: 'Not now', act: 'close' }] }); return; }
     // gate
     if (fc.x === a.town.gate.x && fc.y === a.town.gate.y) {
       UI.dialog({ title: 'The Gate', text: 'Beyond the gate the wilds spread out in every direction.', actions: [{ label: 'Leave Town', act: 'leave-town' }, { label: 'Stay', act: 'close' }] });
       return;
     }
     Toast('Nothing to interact with here.', 'info');
+  }
+
+  // what can we interact with where we stand / face? (for the on-screen prompt)
+  function prompt() {
+    var Gg = Campaign.G;
+    if (Gg.phase === 'building') {
+      var aB = ADV.get(Gg.loc.adv);
+      var ev = View.map.events ? View.map.events[Gg.loc.y * View.map.w + Gg.loc.x] : null;
+      if (!ev) { var fcB = facingCell(); ev = View.map.events[fcB.y * View.map.w + fcB.x]; }
+      if (!ev) return null;
+      if (ev.kind === 'counter') { var bB = aB.town.buildingsById[ev.bld]; return '<b>Talk at the counter</b> — ' + bB.name + ' (◙ / Space)'; }
+      if (ev.kind === 'npc') { var nB = aB.town.npcs[ev.npc]; return '<b>Talk to ' + nB.name + '</b> (◙ / Space)'; }
+      if (ev.kind === 'exit') return '<b>Leave</b> ' + aB.town.buildingsById[cur.bld].name + ' (◙ / Space)';
+      return null;
+    }
+    if (Gg.phase !== 'town') return null;
+    var a = ADV.get(Gg.loc.adv);
+    var map = View.map;
+    var fc = facingCell();
+    var here = Gg.loc.y * map.w + Gg.loc.x, there = fc.y * map.w + fc.x;
+    var npc = null;
+    Object.keys(a.town.npcs).forEach(function (id) {
+      var n = a.town.npcs[id];
+      if (n.bld) return;
+      if ((n.x === fc.x && n.y === fc.y) || (n.x === Gg.loc.x && n.y === Gg.loc.y)) npc = n;
+    });
+    if (npc) return '<b>Talk to ' + npc.name + '</b> (◙ / Space)';
+    var d = a.town.doors[there];
+    if (d) return '<b>Enter</b> ' + a.town.buildingsById[d.bld].name + ' (◙ / Space)';
+    if (fc.x === a.town.gate.x && fc.y === a.town.gate.y) return '<b>Leave town</b> through the gate (◙ / Space)';
+    var evHere = a.town.events[here], evThere = a.town.events[there];
+    if ((evHere && evHere.kind === 'well') || (evThere && evThere.kind === 'well')) return '<b>The old well</b> (◙ / Space)';
+    return null;
   }
 
   function counterAction(bldId) {
@@ -691,13 +725,24 @@ var Town = (function () {
       UI.dialog({ title: n.name, text: '“My grandfather bought the other half of the barrow key from the last steward of the Iron King. Sell it I will not. Give it? For the wardenship, yes.”', actions: [{ label: 'Receive the half-key', act: 'key.take-b' }, { label: 'Leave it', act: 'close' }] });
       return;
     }
+    // street characters: watchman and road-wearied traveller pass the day's word
+    if (n.role === 'watchman' || n.role === 'traveller') {
+      var aR = ADV.get(advId);
+      var rs = aR.wilds.rumours || [];
+      var line = rs.length ? rs[((Campaign.G.day - 1) + (n.role === 'traveller' ? 3 : 0)) % rs.length] : 'Nothing new but wind and rain.';
+      var intro = n.role === 'watchman'
+        ? 'The watchman leans on the pike and speaks low, the way people do when the street is empty.'
+        : 'The traveller squints at the horizon and shakes road-dust from a worn map.';
+      UI.dialog({ title: n.name, text: intro + ' “' + line + '”', actions: [{ label: 'Nod and move on', act: 'close' }] });
+      return;
+    }
     UI.dialog({ title: n.name, text: '“' + M.pick(['Mind the hour, travellers.', 'The wilds are thick with eyes these weeks.', 'Gold opens doors; steel opens the rest.', 'Ride well, and ride back.']) + '”', actions: [{ label: 'Close', act: 'close' }] });
   }
 
   return {
     enter: enter, step: step, interact: interact,
     enterInterior: enterInterior, exitInterior: exitInterior,
-    leaveTown: leaveTown, counterAction: counterAction,
+    leaveTown: leaveTown, counterAction: counterAction, prompt: prompt,
     npcDialog: npcDialog, hallDialog: hallDialog,
     get cur() { return cur; },
     townMap: townMap
@@ -1024,8 +1069,9 @@ var Dungeon = (function () {
 
   function facingCell() {
     var Gg = Campaign.G;
-    var v = Math.round(View.dir / (Math.PI / 2)) % 4;
-    var dx = [0, 1, 0, -1][(v + 4) % 4], dy = [-1, 0, 1, 0][(v + 4) % 4];
+    var v = ((Math.round(View.dir / (Math.PI / 2)) % 4) + 4) % 4;
+    // dir 0 = east, PI/2 = south, -PI/2 = north (matches the raycaster)
+    var dx = [1, 0, -1, 0][v], dy = [0, 1, 0, -1][v];
     return { x: Gg.loc.x + dx, y: Gg.loc.y + dy };
   }
 
@@ -1040,6 +1086,9 @@ var Dungeon = (function () {
       // stairs on our cell
       if (Gg.loc.x === f.up.x && Gg.loc.y === f.up.y) { takeStairs(true); return; }
       if (Gg.loc.x === f.down.x && Gg.loc.y === f.down.y && floorHasDown(f, ADV.get(cur.adv))) { takeStairs(false); return; }
+      // a found trap on the facing cell — a thief may disarm it
+      var t = f.traps[idx];
+      if (t && st.trapsFound.indexOf(idx) >= 0) { disarm(idx); return; }
       Toast('Nothing to interact with there.', 'info');
       return;
     }
@@ -1094,6 +1143,29 @@ var Dungeon = (function () {
     Campaign.log('The door swings open.');
     Campaign.addMinutes(1);
     enter(cur.adv, cur.floor, { x: Campaign.G.loc.x, y: Campaign.G.loc.y });
+  }
+
+  // what can we interact with where we stand / face? (for the on-screen prompt)
+  function prompt() {
+    var Gg = Campaign.G;
+    if (Gg.phase !== 'dungeon') return null;
+    var f = View.map.floor;
+    var st = cur.st;
+    var fc = facingCell();
+    var idx = fc.y * f.w + fc.x;
+    var d = f.doors ? f.doors[idx] : null;
+    if (d) {
+      if (d.kind === 'secret' && !d.found) return null;
+      if (d.kind === 'locked') return d.open ? '<b>A locked door</b>, standing open (◙ / Space)' : '<b>A locked door</b> — needs its key (◙ / Space)';
+      if (d.kind === 'secret') return '<b>A secret door</b> (◙ / Space)';
+      return d.open ? '<b>An open door</b> — close it (◙ / Space)' : '<b>A door</b> — open, or listen (◙ / Space)';
+    }
+    if (fc.x === f.up.x && fc.y === f.up.y) return '<b>The stairs up</b> (◙ / Space)';
+    if (fc.x === f.down.x && fc.y === f.down.y && floorHasDown(f, ADV.get(cur.adv))) return '<b>The stairs down</b> (◙ / Space)';
+    // found trap on the facing cell
+    var t = f.traps[idx];
+    if (t && st.trapsFound.indexOf(idx) >= 0 && disarmingThief()) return '<b>A ' + t.kind + ' trap</b> — disarm? (◙ / Space)';
+    return null;
   }
 
   function listen() {
@@ -1234,7 +1306,7 @@ var Dungeon = (function () {
 
   return {
     enter: enter, step: step, interact: interact, search: search,
-    listen: listen, openDoor: openDoor, disarm: disarm, dropItem: dropItem, restUntilHealed: restUntilHealed,
+    listen: listen, openDoor: openDoor, disarm: disarm, dropItem: dropItem, restUntilHealed: restUntilHealed, prompt: prompt,
     markVisited: markVisited, takeStairs: takeStairs,
     get cur() { return cur; },
     dungeonMap: dungeonMap

@@ -111,7 +111,7 @@ function parseSel(sel) {
 
 // prebuilt app shell
 const ids = {};
-['app', 'topbar', 'top-title', 'top-loc', 'top-clock', 'top-gold', 'stage', 'cv', 'watch', 'minimap', 'vitals', 'bar', 'pad', 'ui', 'toast'].forEach(id => {
+['app', 'topbar', 'top-title', 'top-loc', 'top-clock', 'top-gold', 'stage', 'cv', 'prompt', 'watch', 'minimap', 'vitals', 'bar', 'pad', 'ui', 'toast'].forEach(id => {
   const e = new El(id === 'cv' || id === 'minimap' ? 'canvas' : 'div');
   e.attributes['id'] = id;
   ids[id] = e;
@@ -123,6 +123,7 @@ const ids = {};
 ids['pad'].appendChild(ids['pad-side']);
 ids['pad'].appendChild(ids['pad-dirs']);
 ids['stage'].appendChild(ids['cv']);
+ids['stage'].appendChild(ids['prompt']);
 ids['stage'].appendChild(ids['watch']);
 ids['stage'].appendChild(ids['bar']);
 ids['stage'].appendChild(ids['pad']);
@@ -299,6 +300,20 @@ const G = () => context.Campaign.G;
   context.Town.enter(G().loc.adv || 'E0');
   ok(G().phase === 'town', 'entered town (got ' + G().phase + ')');
   const t = G().loc;
+  // street npc prompt: face the first street npc
+  const advEarly = context.ADV.get(G().activeAdv);
+  const streetNpcs = Object.keys(advEarly.town.npcs).filter(id => !advEarly.town.npcs[id].bld);
+  ok(streetNpcs.length >= 2, 'town has street npcs (got ' + streetNpcs.length + ')');
+  if (streetNpcs.length) {
+    const n0 = advEarly.town.npcs[streetNpcs[0]];
+    G().loc.x = n0.x + 1; G().loc.y = n0.y;
+    context.View.setPos(G().loc.x + 0.5, G().loc.y + 0.5, Math.PI); // face west, toward the npc
+    context.UI.close();
+    const pr = context.Town.prompt();
+    ok(pr && pr.indexOf(n0.name) >= 0, 'town prompt names street npc when facing');
+    context.Game.wake(); pumpRAF();
+    ok(sandbox.document.getElementById('prompt').innerHTML.indexOf(n0.name) >= 0, 'prompt element rendered by the game loop');
+  }
   // walk around
   context.Town.step(0, -1);
   context.Town.step(1, 0);
@@ -362,6 +377,13 @@ const G = () => context.Campaign.G;
     }
     context.Dungeon.interact();
     ok(true, 'dungeon interact ran');
+    // dungeon prompt: face the up-stairs
+    const fU = adv2.floors[0];
+    G().loc.x = fU.up.x; G().loc.y = fU.up.y + 1 < fU.h ? fU.up.y + 1 : fU.up.y - 1;
+    context.View.setPos(G().loc.x + 0.5, G().loc.y + 0.5, G().loc.y < fU.up.y ? Math.PI / 2 : -Math.PI / 2);
+    context.UI.close();
+    const dpr = context.Dungeon.prompt();
+    ok(dpr && dpr.indexOf('stairs up') >= 0, 'dungeon prompt names stairs when facing (' + (dpr || 'null') + ')');
   }
 
   console.log('== combat (forced) ==');
@@ -414,6 +436,7 @@ const G = () => context.Campaign.G;
     pump(50); pumpRAF();
     const cc = context.Combat.C;
     if (!cc) break;
+    if (guard > 320 && !cc.auto) { cc.auto = true; } // stall guard: engage auto-fight
     if (cc.state === 'player' && cc.mode === 'menu') {
       const a2 = context.Combat.current();
       if (a2) {

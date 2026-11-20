@@ -69,15 +69,28 @@ var Game = (function () {
     requestAnimationFrame(loop);
   }
 
+  var promptEl = null;
+  function setPrompt(html) {
+    if (!promptEl) promptEl = document.getElementById('prompt');
+    if (!promptEl) return;
+    if (html && !UI.isOpen()) { promptEl.innerHTML = html; promptEl.className = ''; }
+    else promptEl.className = 'hidden';
+  }
+
   function render() {
     var Gg = Campaign.G;
     if (!Gg) return;
     if (Gg.phase === 'overland') {
       olLayout = Overland.render(cv);
+      setPrompt(null);
     } else if (Gg.phase === 'town' || Gg.phase === 'building' || Gg.phase === 'dungeon') {
       View.render();
+      setPrompt(Gg.phase === 'dungeon' ? Dungeon.prompt() : Town.prompt());
     } else if (Gg.phase === 'combat') {
       Combat.render(cv);
+      setPrompt(null);
+    } else {
+      setPrompt(null);
     }
     Watch.render();
   }
@@ -232,7 +245,7 @@ var Game = (function () {
     var c = UI._create;
     if (a === 'size') { c.count = +d.n; UI.createScreen(); }
     else if (a === 'size-1') { c.count = Math.max(1, c.count - 1); UI.createScreen(); }
-    else if (a === 'size+1') { c.count = Math.min(4, c.count + 1); UI.createScreen(); }
+    else if (a === 'size+1') { c.count = Math.min(6, c.count + 1); UI.createScreen(); }
     else if (a === 'race') {
       if (!c.draft) c.draft = { race: d.r, cls: null, align: null, attrs: null, name: randomName(d.r), known: [] };
       c.draft.race = d.r;
@@ -381,6 +394,7 @@ var Game = (function () {
     if (a === 'dungeon.open') { UI.close(); Dungeon.openDoor(+JSON.parse(d.data || '{}').idx); return; }
     if (a === 'dungeon.listen') { Dungeon.listen(); return; }
     if (a === 'dungeon.disarm') { UI.close(); Dungeon.disarm(+JSON.parse(d.data || '{}').idx); return; }
+    if (a === 'town.enter-door') { UI.close(); Town.enterInterior(JSON.parse(d.data || '{}').bld); return; }
     var site = d.site ? JSON.parse(d.site) : null;
     Overland.siteAction(a, { adv: d.adv || Gg.activeAdv, site: site });
   }

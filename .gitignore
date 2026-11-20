@@ -1,2 +1,4 @@
 .DS_Store
 chrome-test-tmp/
+tools/_chrome_profile/
+tools/_cp10/

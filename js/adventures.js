@@ -368,6 +368,7 @@ ADV.KEYITEMS.cloak_e3 = { id:'cloak_e3', n:'The Moth-Eaten Cloak', cat:'quest', 
 
 /* ---------- town builder (standard layout) ---------- */
 function stdTown(opts) {
+  var str = new Streams('townnpcs:' + opts.town);
   var buildings = [
     { id:'hall', kind:'hall', name: opts.town + ' Guild Hall', x:3, y:3, w:5, h:4 },
     { id:'inn', kind:'inn', name: opts.inn, x:9, y:3, w:5, h:4 },
@@ -385,7 +386,9 @@ function stdTown(opts) {
     npcs: [
       { id:'giver', name: opts.giver, role:'giver', x:5, y:5, bld:'hall' },
       { id:'innkeep', name: opts.innkeep, role:'innkeep', x:11, y:5, bld:'inn' },
-      { id:'priest', name: opts.priest, role:'priest', x:17, y:5, bld:'temple' }
+      { id:'priest', name: opts.priest, role:'priest', x:17, y:5, bld:'temple' },
+      { id:'watchman', name: WILDS.genName(str, 'watch', opts.town), role:'watchman', x:10, y:8 },
+      { id:'traveller', name: WILDS.genName(str, 'road', opts.town), role:'traveller', x:11, y:19 }
     ]
   };
 }

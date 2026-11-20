@@ -19,11 +19,13 @@ var UI = (function () {
     var r = root();
     r.innerHTML = html;
     r.className = 'open' + (cls ? ' ' + cls : '');
+    if (typeof Game !== 'undefined') Game.wake();
   }
   function close() {
     var r = root();
     r.className = '';
     r.innerHTML = '';
+    if (typeof Game !== 'undefined') Game.wake();
   }
   function isOpen() { return root().classList.contains('open'); }
 
@@ -83,11 +85,12 @@ var UI = (function () {
       title: 'How to Play',
       text: 'You are a small company in the Emberwild. Towns are seen in first person (3D); the wilds and combat are tactical maps.',
       lines: [
-        'Move with the on-screen pad or WASD / arrows. Q / E sidestep, Space or the action button interacts: doors, people, loot, stairs. F searches, R camps, 1–6 open character sheets, M map, J journal, B bestiary, Esc menu.',
+        'Move with the on-screen pad or WASD / arrows. Q / E sidestep, Space or the action button interacts: people, doors, counters, loot, stairs. When someone or something is in front of you, a prompt appears at the bottom of the view — press Space (or the ◙ button) to act. F searches, R camps, 1–6 open character sheets, M map, J journal, B bestiary, Esc menu.',
         'A Ready Company starts at once; or build your own party of up to six.',
         'Time matters. Town and dungeon moves cost minutes; the wilds cost more. Night brings bolder monsters.',
         'Combat is turn-based. Move, attack, defend, cast, drink, or turn undead. Roll d20 + bonus against THAC0 to hit. Saves use the five second-edition categories. Foes with low morale may break and run. Switch on Auto in the combat bar to let the company fight itself.',
         'Quests are given in the guild hall. Main quest XP is a quarter of the listed reward, and is granted on completion. Training at the yard buys levels for 100 gold per level.',
+        'Talk to the people in town — turn to face them and press Action. The watchman and the travellers on the street pass the day’s rumours of the wilds.',
         'Rest at inns, camps and healers — rest until dawn, or until every wound is closed. Pray at temples (once a day). The map shows explored ground.',
         'Mages copy wizard scrolls into their spellbook (Learn). Items dropped in dungeons stay on the ground. Thieves creep, listen and pick trap mechanisms; dwarves and thieves search best. The party cannot walk through a known monster.',
         'Save any time from the bar. Four slots plus an autosave. All saves live in this browser.'

@@ -6,7 +6,10 @@ no assets. Open `index.html` and play.
 It plays like a late-1980s "gold box" computer RPG:
 
 - **First-person exploration** — a textured raycaster for towns, building
-  interiors and torch-lit dungeon floors (all textures drawn in code).
+  interiors and torch-lit dungeon floors (all textures drawn in code). Turn to
+  face a person, door, counter or stair and a gold prompt appears at the base
+  of the view; press Space or `◙` to act. Towns keep their own folk — the
+  watchman and the road-wearied traveller pass the day's rumours of the wilds.
 - **Overland travel** — terrain grids, roads and rivers, sites (towns,
   dungeon entrances, hamlets, healers, holy stones, monster lairs, camps),
   encounters, rumours and passing travellers.
@@ -38,7 +41,7 @@ It plays like a late-1980s "gold box" computer RPG:
   step; tap enemies to attack.
 - **Keyboard** — `WASD`/arrows move and turn, `Q`/`E` sidestep, `F` search,
   `R` camp, `Space` interact, `M` map, `J` journal, `B` bestiary,
-  `1–6` character sheets, `Esc` menu / back.
+  `1–6` character sheets, `Esc` menu / back. Parties may hold up to six.
 
 ## Saves
 
